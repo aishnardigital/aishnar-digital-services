@@ -71,7 +71,7 @@ Built with `HTML`, `CSS`, and `JavaScript`, the website is lightweight, fast, an
 
 Developed and maintained by:
 
-- **Narender** (Founder)  
+- **Narender** (Co-Founder)  
 - **Aishwary** (Co-Founder)  
 **Brand:** [AishNar Digital](https://aishnardigital.github.io/aishnar-digital-services/)
 

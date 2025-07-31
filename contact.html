@@ -556,22 +556,6 @@
   </p>
 </form>
 
-<script>
-  const form = document.getElementById('contact-form');
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form)
-    }).then(response => {
-      alert("✅ Message sent successfully! We'll be in touch soon.");
-      form.reset();
-    }).catch(error => {
-      alert("❌ Something went wrong. Please try again.");
-      console.error("Form submission error:", error);
-    });
-  });
-</script>
 
                 </div>
             </div>
@@ -803,40 +787,31 @@
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
         
-        // Contact Form Submission
-        const contactForm = document.getElementById('contact-form');
-        
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple form validation
-            if (!name || !email || !message) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // In a real implementation, you would send this data to a server
-            // For this demo, we'll just show a success message
-            alert(`Thanks for reaching out, ${name}! We'll get back to you soon.`);
-            
-            // Optional: Create WhatsApp link with form data
-            const whatsappMessage = `Hi AishNar Digital! My name is ${name}. ${message}`;
-            const whatsappUrl = `https://wa.me/919157255093?text=${encodeURIComponent(whatsappMessage)}`;
-            
-            // Ask if they want to continue on WhatsApp
-            if (confirm('Would you like to continue this conversation on WhatsApp for faster response?')) {
-                window.open(whatsappUrl, '_blank');
-            }
-            
-            // Reset the form
-            contactForm.reset();
-        });
+      const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+      method: 'POST',
+      body: formData
+    })
+    .then(() => {
+      form.style.display = 'none';
+      const successMessage = document.createElement('p');
+      successMessage.className = 'text-center text-green-600 font-medium text-lg mt-6';
+      successMessage.innerText = "✅ Thank you! Your message has been sent. We'll get back to you soon.";
+      form.parentNode.appendChild(successMessage);
+    })
+    .catch(() => {
+      const errorMessage = document.createElement('p');
+      errorMessage.className = 'text-center text-red-600 font-medium text-lg mt-6';
+      errorMessage.innerText = "❌ Something went wrong. Please try again later.";
+      form.parentNode.appendChild(errorMessage);
+    });
+  });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9652c9b8e374c203',t:'MTc1MzUyMTI3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

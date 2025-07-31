@@ -791,32 +791,43 @@
 form.addEventListener('submit', function (e) {
   e.preventDefault();
 
+  const form = document.getElementById('contact-form');
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+
   const formData = new FormData(form);
   const data = new URLSearchParams();
 
-  for (const pair of formData) {
-    data.append(pair[0], pair[1]);
+  for (const [key, value] of formData.entries()) {
+    data.append(key, value);
   }
 
   fetch(form.action, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'  // 💡 Required by Apps Script
+      'Content-Type': 'application/x-www-form-urlencoded'
     },
     body: data
   })
-  .then(() => {
-    form.style.display = 'none';
-    const successMessage = document.createElement('p');
-    successMessage.className = 'text-center text-green-600 font-medium text-lg mt-6';
-    successMessage.innerText = "✅ Thank you! Your message has been sent. We'll get back to you soon.";
-    form.parentNode.appendChild(successMessage);
+  .then(response => response.text())
+  .then(responseText => {
+    if (responseText === "Success") {
+      form.style.display = 'none';
+      const successMessage = document.createElement('p');
+      successMessage.className = 'text-center text-green-600 font-medium text-lg mt-6';
+      successMessage.innerText = "✅ Thank you! Your message has been sent.";
+      form.parentNode.appendChild(successMessage);
+    } else {
+      throw new Error("Server error: " + responseText);
+    }
   })
-  .catch(() => {
+  .catch(error => {
     const errorMessage = document.createElement('p');
     errorMessage.className = 'text-center text-red-600 font-medium text-lg mt-6';
     errorMessage.innerText = "❌ Something went wrong. Please try again later.";
     form.parentNode.appendChild(errorMessage);
+    console.error(error);
   });
 });
     </script>

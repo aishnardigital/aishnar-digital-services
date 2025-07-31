@@ -511,52 +511,45 @@
                 </div>
                 
                 <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 md:p-8 reveal">
-                    <form 
-  id="contact-form" 
-  action="https://script.google.com/macros/s/AKfycbxLSZR_keI7OgKagPNt4YivVlQ3pHJg2ScvLoD8L4yScAQufx-K-KT--xyfqDlgDTcJ/exec" 
-  method="POST" 
-  class="space-y-6"
->
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div>
-      <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
-      <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required>
-    </div>
-    <div>
-      <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone (optional)</label>
-      <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none">
-    </div>
-  </div>
-
-  <div>
-    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-    <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required>
-  </div>
-
-  <div>
-    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-    <textarea id="message" name="message" rows="5" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required></textarea>
-  </div>
-
-  <div class="flex items-center">
-    <input type="checkbox" id="privacy" name="privacy" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" required>
-    <label for="privacy" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
-      I agree to be contacted about my inquiry
-    </label>
-  </div>
-
-  <div class="text-center">
-    <button type="submit" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
-      Send Message
-    </button>
-  </div>
-
-  <p class="text-xs text-gray-500 dark:text-gray-400 text-center italic">
-    We never share your info. We're not that kind of digital.
-  </p>
-</form>
-
-
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Phone (optional)</label>
+                                <input type="tel" id="phone" name="phone" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                            <input type="email" id="email" name="email" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-input w-full px-4 py-2 rounded-lg focus:outline-none" required></textarea>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <input type="checkbox" id="privacy" name="privacy" class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" required>
+                            <label for="privacy" class="ml-2 block text-sm text-gray-700 dark:text-gray-300">
+                                I agree to be contacted about my inquiry
+                            </label>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary text-white px-8 py-3 rounded-full font-medium">
+                                Send Message
+                            </button>
+                        </div>
+                        
+                        <p class="text-xs text-gray-500 dark:text-gray-400 text-center italic">
+                            We never share your info. We're not that kind of digital.
+                        </p>
+                    </form>
                 </div>
             </div>
         </div>
@@ -786,50 +779,42 @@
         
         window.addEventListener('scroll', revealOnScroll);
         window.addEventListener('load', revealOnScroll);
-        const form = document.getElementById('contact-form');
+        
+        // Contact Form Submission
+        
+  const contactForm = document.getElementById('contact-form');
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-    const form = document.getElementById('contact-form');
+    const formData = new FormData(contactForm);
+    const data = {
+      name: formData.get('name'),
+      phone: formData.get('phone') || '',
+      email: formData.get('email'),
+      message: formData.get('message'),
+      privacy: formData.get('privacy') ? 'Agreed' : 'Not agreed'
+    };
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-  const data = new URLSearchParams();
-
-  for (const [key, value] of formData.entries()) {
-    data.append(key, value);
-  }
-
-  fetch(form.action, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: data
-  })
-  .then(response => response.text())
-  .then(responseText => {
-    if (responseText === "Success") {
-      form.style.display = 'none';
-      const successMessage = document.createElement('p');
-      successMessage.className = 'text-center text-green-600 font-medium text-lg mt-6';
-      successMessage.innerText = "✅ Thank you! Your message has been sent.";
-      form.parentNode.appendChild(successMessage);
-    } else {
-      throw new Error("Server error: " + responseText);
-    }
-  })
-  .catch(error => {
-    const errorMessage = document.createElement('p');
-    errorMessage.className = 'text-center text-red-600 font-medium text-lg mt-6';
-    errorMessage.innerText = "❌ Something went wrong. Please try again later.";
-    form.parentNode.appendChild(errorMessage);
-    console.error(error);
+    fetch('https://script.google.com/macros/s/AKfycbyiG7xSDJ0dfZyZHupH4i2ptqMUZnz4yTB7h_d0SG3cfN_WXbmPRtyJxVLo2nvpW8-1/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(() => {
+      alert('Message sent successfully!');
+      contactForm.reset();
+    }).catch((error) => {
+      alert('Error! Please try again.');
+      console.error('Error:', error);
+    });
   });
-});
+
+
+        
+        });
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9652c9b8e374c203',t:'MTc1MzUyMTI3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

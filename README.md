@@ -78,4 +78,28 @@ Developed and maintained by:
 ---
 
 ## 📁 Folder Structure
+aishnar-digital-services/
+├── index.html
+├── about.html
+├── services.html
+├── case-studies.html
+├── reports.html
+├── contact.html
+├── styles.css
+├── script.js
+├── assets/
+│ ├── logo.png
+│ └── report-pdfs/
+└── README.md
+📣 License & Credits
+🔒 This project is currently private or closed source for clients.
+MIT License may be applied in the future.
 
+💬 Contact Info
+📱 WhatsApp Chat
+
+🌐 Visit Website
+
+📸 Instagram (if public)
+
+Built with ❤️ by AishNar Digital – Helping small brands go big online.

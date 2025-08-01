@@ -678,7 +678,7 @@
                                 <svg class="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                                 </svg>
-                                <span class="text-gray-600 dark:text-gray-300">1-Page Responsive Website</span>
+                                <span class="text-gray-600 dark:text-gray-300"> Responsive Website</span>
                             </li>
                             <li class="flex items-start">
                                 <svg class="w-5 h-5 text-green-500 mt-0.5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -914,10 +914,10 @@
                                     </span>
                                 </label>
                                 <label class="custom-checkbox block">
-                                    <input type="checkbox" class="service-checkbox" data-price="2000" data-name="1-Page Website">
+                                    <input type="checkbox" class="service-checkbox" data-price="1999" data-name="Website">
                                     <span class="checkmark"></span>
                                     <span class="flex justify-between w-full">
-                                        <span>1-Page Website</span>
+                                        <span> Website</span>
                                         <span class="text-gray-600 dark:text-gray-400">₹2,000</span>
                                     </span>
                                 </label>
@@ -958,11 +958,11 @@
                             
                             <div id="more-services" class="hidden mt-4 space-y-2">
                                 <label class="custom-checkbox block">
-                                    <input type="checkbox" class="service-checkbox" data-price="6000" data-name="Multi-page Website">
+                                    <input type="checkbox" class="service-checkbox" data-price="4999" data-name="Multi-page Website">
                                     <span class="checkmark"></span>
                                     <span class="flex justify-between w-full">
                                         <span>Multi-page Website</span>
-                                        <span class="text-gray-600 dark:text-gray-400">₹6,000</span>
+                                        <span class="text-gray-600 dark:text-gray-400">₹4,999</span>
                                     </span>
                                 </label>
                                 <label class="custom-checkbox block">
@@ -1054,12 +1054,13 @@
                             <svg class="w-5 h-5 mr-2 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm2.5 3a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6.207.293a1 1 0 00-1.414 0l-6 6a1 1 0 101.414 1.414l6-6a1 1 0 000-1.414zM12.5 10a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" clip-rule="evenodd"></path>
                             </svg>
-                            Unlock Freebies (Spend ₹1,999+)
+                            Unlock Freebies (Spend ₹1,299+)
                         </h4>
                         <ul class="text-sm text-gray-500 dark:text-gray-400 ml-7 list-disc">
-                            <li>Insta Profile Audit</li>
-                            <li>1 Festival Poster</li>
-                            <li>15-min growth call</li>
+                            <li>✅ Lead Form Setup – Start capturing leads from your bio, site, or ads</li>
+                            <li>✅ 1 Festival/Offer Poster – Ready to post for your next promo</li>
+                            <li>🎁 Mystery Bonus Gift – Could be a 15-min call, logo fix, or secret tool from our vault
+(We keep it exciting!)</li>
                         </ul>
                     </div>
                     
@@ -1394,7 +1395,7 @@
             }
             
             // Check if freebies should be unlocked
-            if (totalPrice >= 1999) {
+            if (totalPrice >= 1299) {
                 freebiesSection.classList.add('active');
                 freebiesSection.classList.remove('opacity-50');
             } else {
@@ -1415,8 +1416,8 @@
             
             message += `\n\nTotal: ₹${totalPrice}`;
             
-            if (totalPrice >= 1999) {
-                message += "\n\nI understand this qualifies me for the free bonuses: Insta Profile Audit, 1 Festival Poster, and 15-min growth call.";
+            if (totalPrice >= 1299) {
+                message += "\n\nI understand this qualifies me for the free bonuses: Lead Form Setup, 1 Festival/Offer Poster and One Mystery Bonus Gift.";
             }
             
             const encodedMessage = encodeURIComponent(message);
